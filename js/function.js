@@ -1,5 +1,8 @@
 var showOnScreen = document.calculator.display;
 var PIE=Math.PI;
+var ButtonClicked = 0;
+var memory=[];
+// memory.push("9");
 
 function Numbers(x){
     switch(x)
@@ -91,6 +94,15 @@ function Arithmetic(x){
                 showOnScreen.value +="0";
             } 
             break;
+        
+        case "Cube":
+            if(showOnScreen.value != ""){
+                showOnScreen.value = Math.pow(showOnScreen.value,3);
+            }
+            else{
+                showOnScreen.value +="0";
+            } 
+            break;
 
         case "Inverse":
             if(showOnScreen.value != ""){
@@ -102,6 +114,15 @@ function Arithmetic(x){
             break;
         case "Absolute":
             showOnScreen.value = Math.abs(showOnScreen.value);
+            break;
+        
+        case "Square_root":
+            showOnScreen.value = Math.sqrt(showOnScreen.value);
+            break;
+    
+        case "Cube_root":
+            showOnScreen.value = Math.cbrt(showOnScreen.value);
+            break;
     }
 }
 
@@ -117,6 +138,76 @@ function Modulo(){
 
 function Square_root(){
     showOnScreen.value = Math.sqrt(showOnScreen.value);
+}
+
+function X_Times_Y(){
+    showOnScreen.value += "^";
+}
+
+function Y_Root_X(){
+    showOnScreen.value += "Yroot";
+}
+
+function XYSquare(){
+    let a = showOnScreen.value[showOnScreen.value.length-1];
+    if(a.match(/[0-9]/)){
+        let b = showOnScreen.value.split("^");
+        showOnScreen.value = Math.pow(b[0],b[1]);
+    }
+    else{
+        showOnScreen.value = "Invalid input";
+    }
+}
+
+function XYroot(){
+    let a = showOnScreen.value[showOnScreen.value.length-1];
+    if(a.match(/[0-9]/)){
+        let b = showOnScreen.value.split("Yroot");
+        showOnScreen.value = Math.pow(b[0],1/b[1]);
+    }
+    else{
+        showOnScreen.value = "Invalid input";
+    }
+}
+
+function X_Times_10(){
+    showOnScreen.value = Math.pow(10,showOnScreen.value);
+}
+function Two_raise_X(){
+    showOnScreen.value = Math.pow(2,showOnScreen.value);
+}
+
+function logBase10(){
+    showOnScreen.value = Math.log10(showOnScreen.value);
+}
+function logBaseY(){
+    showOnScreen.value += "baseY";
+}
+function calculatelogBaseY(){
+    let a = showOnScreen.value[showOnScreen.value.length-1];
+    if(a.match(/[0-9]/)){
+        let b = showOnScreen.value.split("baseY");
+        showOnScreen.value = Math.log(b[0]) / Math.log(b[1]);
+    }
+    else{
+        showOnScreen.value = "Invalid input";
+    }
+}
+
+function logBaseE(){
+    showOnScreen.value = Math.log(showOnScreen.value);
+}
+
+function InverseValue(){
+    let num = showOnScreen.value[0];
+    let a = num[0];
+    let b = "-";
+    if(a != "-"){
+        showOnScreen.value = b.concat(showOnScreen.value);
+    }
+    else if(num =="-"){
+        showOnScreen.value = showOnScreen.value.slice(1);
+    }
 }
 
 function OpenBracket(){
@@ -152,7 +243,9 @@ function factorial(n){
         showOnScreen.value = "-" + answer;
     }  
 0}
-
+function Operator(){
+    showOnScreen.value+= ".";
+}
 
 function BackSpace(){
     if(showOnScreen.value!=""){
@@ -164,6 +257,146 @@ function clickclr() {
     showOnScreen.value = "";
 }
 function clickequ() {
+    if(showOnScreen.value.includes("^")){
+        XYSquare();
+    }
+    if(showOnScreen.value.includes("Yroot")){
+        XYroot();
+    }
+    if(showOnScreen.value.includes("baseY")){
+        calculatelogBaseY();
+    }
     var Display = eval(showOnScreen.value);
     showOnScreen.value = Display;
+}
+
+
+function trigonometry(x){
+    switch(x){
+        case "sin":
+            showOnScreen.value = Math.sin(showOnScreen.value);
+            break;
+
+        case "cos":
+        showOnScreen.value = Math.cos(showOnScreen.value);
+            break;
+
+        case "tan":
+            showOnScreen.value = Math.tan(showOnScreen.value);
+            break;
+
+        case "sec":
+            showOnScreen.value = 1/Math.cos(showOnScreen.value);
+            break;
+
+        case "cosec":
+            showOnScreen.value = 1/Math.sin(showOnScreen.value);
+            break;
+
+        case "cot":
+            showOnScreen.value = 1/Math.tan(showOnScreen.value);
+            break;
+
+    }
+}
+
+function Functions(x){
+    switch(x){
+        case "floor":
+            showOnScreen.value = Math.floor(showOnScreen.value);
+            break;
+
+        case "ceil":
+            showOnScreen.value = Math.ceil(showOnScreen.value);
+            break;
+
+        case "mod":
+            showOnScreen.value = Math.abs(showOnScreen.value);
+            break;
+    }
+}
+
+
+function Revert(x){
+
+    if(ButtonClicked % 2 == 0){
+        document.getElementById("Square").style.display="none";
+        document.getElementById("Square_root").style.display="none";
+        document.getElementById("XYSquare").style.display="none";
+        document.getElementById("X_Times_10").style.display="none";
+        document.getElementById("log").style.display="none";
+        document.getElementById("logE").style.display="none";
+
+
+        document.getElementById("Cube").style.display="block";
+        document.getElementById("Cube_root").style.display="block";
+        document.getElementById("Y_root_X").style.display="block";
+        document.getElementById("Two_raise_X").style.display="block";
+        document.getElementById("logyx").style.display="block";
+        document.getElementById("logyx").style.fontSize="14px";
+        document.getElementById("EraiseX").style.display="block";
+
+        ButtonClicked++;
+    }
+    else if(ButtonClicked % 2 != 0){
+        document.getElementById("Square").style.display="block";
+        document.getElementById("Square_root").style.display="block";
+        document.getElementById("XYSquare").style.display="block";
+        document.getElementById("X_Times_10").style.display="block";
+        document.getElementById("log").style.display="block";
+        document.getElementById("logE").style.display="block";
+
+
+        document.getElementById("Cube").style.display="none";
+        document.getElementById("Cube_root").style.display="none";
+        document.getElementById("Y_root_X").style.display="none";
+        document.getElementById("Two_raise_X").style.display="none";
+        document.getElementById("logyx").style.display="none";
+        document.getElementById("EraiseX").style.display="none";
+        ButtonClicked++;
+    }
+}
+
+function Memory_Clear(){
+    memory=[];
+    window.alert("Memory Cleared");
+}
+
+function Memory_Result(){
+    showOnScreen.value = memory[memory.length-1];
+}
+
+function Memory_Plus(){
+    if(memory.length==0){
+        memory.push(showOnScreen.value);
+        clickclr();
+        // showOnScreen.value = memory[memory.length-1];
+    }
+    else{
+        let a = Number(showOnScreen.value) + Number(memory[memory.length-1]);
+        memory.push(a);
+        clickclr();
+    }
+}
+
+function Memory_Sub(){
+    if(memory.length==0){
+        memory.push(showOnScreen.value);
+        let x = Number(memory[memory.length-1]);
+        if(x>0){
+            x = -Math.abs(x);
+            memory.push(x);
+        }
+        clickclr();
+    }
+    else{
+        let a = Number(memory[memory.length-1])- Number(showOnScreen.value); 
+        memory.push(a);
+        clickclr();
+    }
+}
+
+function Memory_Store(){
+    memory.push(showOnScreen.value);
+    clickclr();
 }
