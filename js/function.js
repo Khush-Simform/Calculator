@@ -1,10 +1,10 @@
 var showOnScreen = document.calculator.display;
+var showOnScreen2 = document.calculator.display2;
 var PIE=Math.PI;
 var ButtonClicked = 0;
 var memory=[];
-// memory.push("9");
 
-function Numbers(x){
+function Numbers(x){            //Numbers function
     switch(x)
     {
         case "zero":
@@ -48,9 +48,7 @@ function Numbers(x){
             break;
     }
 }
-
-
-function Arithmetic(x){
+function Arithmetic(x){             //Arithmetic functions
     switch(x){
         case "substraction":
             showOnScreen.value += "-";
@@ -125,30 +123,22 @@ function Arithmetic(x){
             break;
     }
 }
-
-function Exponential(){
+function Exponential(){             //exponential Function
     showOnScreen.value = showOnScreen.value + '.e+0';
-
-    console.log(showOnScreen.value.length);
 }
-
-function Modulo(){
+function Modulo(){              //Modulo functions
     showOnScreen.value += "%";
 }
-
-function Square_root(){
+function Square_root(){             //Square Root functions
     showOnScreen.value = Math.sqrt(showOnScreen.value);
 }
-
-function X_Times_Y(){
+function X_Times_Y(){               //X Raise to Y functions
     showOnScreen.value += "^";
 }
-
-function Y_Root_X(){
+function Y_Root_X(){                //To find Y root of X functions
     showOnScreen.value += "Yroot";
 }
-
-function XYSquare(){
+function XYSquare(){                //X raise to Y square functions
     let a = showOnScreen.value[showOnScreen.value.length-1];
     if(a.match(/[0-9]/)){
         let b = showOnScreen.value.split("^");
@@ -158,8 +148,7 @@ function XYSquare(){
         showOnScreen.value = "Invalid input";
     }
 }
-
-function XYroot(){
+function XYroot(){                  //Y root of X functions
     let a = showOnScreen.value[showOnScreen.value.length-1];
     if(a.match(/[0-9]/)){
         let b = showOnScreen.value.split("Yroot");
@@ -169,21 +158,19 @@ function XYroot(){
         showOnScreen.value = "Invalid input";
     }
 }
-
-function X_Times_10(){
+function X_Times_10(){                  //10 raise to X functions
     showOnScreen.value = Math.pow(10,showOnScreen.value);
 }
-function Two_raise_X(){
+function Two_raise_X(){                 //2 raise to X functions
     showOnScreen.value = Math.pow(2,showOnScreen.value);
 }
-
-function logBase10(){
+function logBase10(){                   //Log with base 10 functions
     showOnScreen.value = Math.log10(showOnScreen.value);
 }
-function logBaseY(){
+function logBaseY(){                    //Log with base Y functions
     showOnScreen.value += "baseY";
 }
-function calculatelogBaseY(){
+function calculatelogBaseY(){           //Log with base Y functions
     let a = showOnScreen.value[showOnScreen.value.length-1];
     if(a.match(/[0-9]/)){
         let b = showOnScreen.value.split("baseY");
@@ -193,12 +180,10 @@ function calculatelogBaseY(){
         showOnScreen.value = "Invalid input";
     }
 }
-
-function logBaseE(){
+function logBaseE(){                    //Log with base E functions
     showOnScreen.value = Math.log(showOnScreen.value);
 }
-
-function InverseValue(){
+function InverseValue(){                //Inverse the value functions
     let num = showOnScreen.value[0];
     let a = num[0];
     let b = "-";
@@ -209,12 +194,10 @@ function InverseValue(){
         showOnScreen.value = showOnScreen.value.slice(1);
     }
 }
-
-function OpenBracket(){
+function OpenBracket(){                 //Bracket Functions
     showOnScreen.value += "(";
 }
-
-function CloseBracket(){
+function CloseBracket(){                //Bracket Functions
     if(showOnScreen.value.includes("(")){
         showOnScreen.value += ")";
     }
@@ -223,8 +206,7 @@ function CloseBracket(){
     }
     
 }
-
-function factorial(n){
+function factorial(n){                  //Factorial function
     let answer = 1;
     if (n == 0 || n == 1){
         showOnScreen.value = answer;
@@ -242,21 +224,26 @@ function factorial(n){
         }
         showOnScreen.value = "-" + answer;
     }  
-0}
-function Operator(){
+}
+function Operator(){                //Dot operator function
     showOnScreen.value+= ".";
 }
-
-function BackSpace(){
+function BackSpace(){               //Backspace function
     if(showOnScreen.value!=""){
         showOnScreen.value=showOnScreen.value.slice(0,-1);
     }
 }
-
-function clickclr() {
+function clickclr() {               //Clear the screen function for Display 1
     showOnScreen.value = "";
 }
-function clickequ() {
+function clickclr2() {              //Clear the screen function for Display 2
+    showOnScreen2.value = "";
+}
+function Display2(){                //Display the screen function for Display 2
+    let z = showOnScreen.value + "=";
+    showOnScreen2.value = z;
+}
+function clickequ() {               //On click Equal to function
     if(showOnScreen.value.includes("^")){
         XYSquare();
     }
@@ -267,11 +254,10 @@ function clickequ() {
         calculatelogBaseY();
     }
     var Display = eval(showOnScreen.value);
+    Display2();
     showOnScreen.value = Display;
 }
-
-
-function trigonometry(x){
+function trigonometry(x){               //Trigonometry functions
     switch(x){
         case "sin":
             showOnScreen.value = Math.sin(showOnScreen.value);
@@ -299,8 +285,7 @@ function trigonometry(x){
 
     }
 }
-
-function Functions(x){
+function Functions(x){                  //Mathematical functions
     switch(x){
         case "floor":
             showOnScreen.value = Math.floor(showOnScreen.value);
@@ -315,9 +300,7 @@ function Functions(x){
             break;
     }
 }
-
-
-function Revert(x){
+function Revert(x){                 //Change the value by pressing '2nd' button
 
     if(ButtonClicked % 2 == 0){
         document.getElementById("Square").style.display="none";
@@ -356,21 +339,17 @@ function Revert(x){
         ButtonClicked++;
     }
 }
-
-function Memory_Clear(){
+function Memory_Clear(){                //Memory clear function
     memory=[];
     window.alert("Memory Cleared");
 }
-
-function Memory_Result(){
+function Memory_Result(){               //Memory result function
     showOnScreen.value = memory[memory.length-1];
 }
-
-function Memory_Plus(){
+function Memory_Plus(){                 //Memory plus function
     if(memory.length==0){
         memory.push(showOnScreen.value);
         clickclr();
-        // showOnScreen.value = memory[memory.length-1];
     }
     else{
         let a = Number(showOnScreen.value) + Number(memory[memory.length-1]);
@@ -378,8 +357,7 @@ function Memory_Plus(){
         clickclr();
     }
 }
-
-function Memory_Sub(){
+function Memory_Sub(){                  //Memory Substraction function
     if(memory.length==0){
         memory.push(showOnScreen.value);
         let x = Number(memory[memory.length-1]);
@@ -395,8 +373,7 @@ function Memory_Sub(){
         clickclr();
     }
 }
-
-function Memory_Store(){
+function Memory_Store(){                //Store the value in memory function
     memory.push(showOnScreen.value);
     clickclr();
 }
