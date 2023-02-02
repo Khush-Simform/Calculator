@@ -20,13 +20,16 @@
         <div class="calculator-body">
             <!-- Top Part of Calculator Start-->
             <div class="top-part">
+                
                 <input type="text" name="display2" id="display2" readonly>
                 <input type="text" name="display" id="display" readonly>
+
                 <input type="button" value="DEG" class="top-item">
                 <input type="button" value="F-E" class="top-item">
                 <input type="button" value="" class="top-item">
                 <input type="button" value="" class="top-item">
                 <input type="button" value="" class="top-item">
+
                 <input type="button" value="MC" onclick="Memory_Clear()" id="MemoryClear" class="top-item">
                 <input type="button" value="MR" onclick="Memory_Result()" id="MenoryResult" class="top-item">
                 <input type="button" value="M+" onclick="Memory_Plus()" id="MemoryPlus" class="top-item">
@@ -80,58 +83,71 @@
 
             <!-- Bottom part of Calculator Starts -->
             <input type="button" value="2nd" onclick="Revert(this.id)" id="two" class="item">
+
             <input type="button" value="&#x1D7B9;" onclick="Arithmetic(this.id)" id="pi" class="item">
             <input type="button" value="e" onclick="Arithmetic(this.id)" id="ex" class="item">
             <input type="button" value="C" onclick="clickclr()" ondblclick="clickclr2()" class="item">
-            <!-- <input type="button" value="" onclick="BackSpace()" class="item"> -->
             <button type="button" onclick="BackSpace()" class="item"><img src="./icon/backspace.png"
                     style="height: 23px; width: 23px;"></button>
+
             <button type="button" onclick="Arithmetic(this.id)" id="Square" class="item">x<sup>2</sup></button>
             <button type="button" style="display:none;" onclick="Arithmetic(this.id)" id="Cube"
                 class="item">x<sup>3</sup></button>
+
             <input type="button" value="1/x" onclick="Arithmetic(this.id)" id="Inverse" class="item">
             <input type="button" value="| x |" onclick="Functions(this.id)" id="mod" class="item">
             <input type="button" value="exp" onclick="Exponential()" class="item">
             <input type="button" value="mod" onclick="Modulo()" class="item">
+
             <button type="button" onclick="Arithmetic(this.id)" id="Square_root"
                 class="item"><sup>2</sup>&#8730x</button>
             <button type="button" style="display:none;" onclick="Arithmetic(this.id)" id="Cube_root"
                 class="item"><sup>3</sup>&#8730x</button>
+
             <input type="button" value="(" onclick="OpenBracket()" class="item">
             <input type="button" value=")" onclick="CloseBracket()" class="item">
-            <input type="button" value="n!" onclick="factorial(showOnScreen.value)" class="item">
+            <input type="button" value="n!" onclick="factorial_result(showOnScreen.value)" class="item">
             <input type="button" value="÷" onclick="Arithmetic(this.id)" id="division" class="item arithmatic">
+            
             <button type="button" onclick="X_Times_Y()" id="XYSquare" class="item"><sub>x</sub><sup>y</sup></button>
             <button type="button" style="display:none;" onclick="Y_Root_X()" id="Y_root_X"
                 class="item"><sup>y</sup>&#8730x</button>
+            
             <input type="button" name="" value="7" onclick="Numbers(this.id)" id="seven" class="item numbers">
             <input type="button" name="" value="8" onclick="Numbers(this.id)" id="eight" class="item numbers">
             <input type="button" name="" value="9" onclick="Numbers(this.id)" id="nine" class="item numbers">
             <input type="button" value="&#215;" onclick="Arithmetic(this.id)" id="multiplication"
                 class="item arithmatic">
+            
             <button type="button" onclick="X_Times_10()" id="X_Times_10" class="item">10<sup>x</sup></button>
             <button type="button" style="display:none;" onclick="Two_raise_X()" id="Two_raise_X"
                 class="item">2<sup>x</sup></button>
+            
             <input type="button" name="" value="4" onclick="Numbers(this.id)" id="four" class="item numbers">
             <input type="button" name="" value="5" onclick="Numbers(this.id)" id="five" class="item numbers">
             <input type="button" name="" value="6" onclick="Numbers(this.id)" id="six" class="item numbers">
             <input type="button" name="" value="-" onclick="Arithmetic(this.id)" id="substraction"
                 class="item arithmatic">
+            
             <button type="button" onclick="logBase10()" id="log" class="item">log</button>
             <button type="button" style="display:none;" onclick="logBaseY()" id="logyx"
                 class="item">log<sub>y</sub><sup>x</sup></button>
+            
             <input type="button" name="" value="1" onclick="Numbers(this.id)" id="one" class="item numbers">
             <input type="button" name="" value="2" onclick="Numbers(this.id)" id="two" class="item numbers">
             <input type="button" name="" value="3" onclick="Numbers(this.id)" id="three" class="item numbers">
             <input type="button" name="" value="+" onclick="Arithmetic(this.id)" id="addition" class="item">
+            
             <button type="button" onclick="logBaseE()" id="logE" class="item">ln</button>
             <button type="button" style="display:none;" onclick="E_raise_X()" id="EraiseX"
                 class="item">e<sup>x</sup></button>
+
             <input type="button" value="+/-" onclick="InverseValue()" class="item">
             <input type="button" name="" value="0" onclick="Numbers(this.id)" id="zero" class="item numbers">
             <input type="button" value="." onclick="Operator()" class="item">
             <input type="button" name="" value="=" onclick="clickequ()" class="item arithmatic equal">
             <!-- Bottom part of Calculator Ends -->
+
         </div>
     </form>
 </body>

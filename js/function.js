@@ -205,23 +205,27 @@ function CloseBracket() {                //Bracket Functions
     }
 
 }
-function factorial(n) {                  //Factorial function
-    let answer = 1;
-    if (n == 0 || n == 1) {
-        showOnScreen.value = answer;
+function factorial_result(n){
+    var result = factorial(n);
+    if(n<0){
+        showOnScreen.value = "-" + result;
     }
-    else if (n > 1) {
-        for (var i = n; i >= 1; i--) {
-            answer = answer * i;
-        }
-        showOnScreen.value = answer;
+    else{
+        showOnScreen.value= result;
     }
-    else if (n < 0) {
-        n = Math.abs(n);
-        for (var i = n; i >= 1; i--) {
-            answer = answer * i;
-        }
-        showOnScreen.value = "-" + answer;
+}
+function factorial(x) {                  //Factorial function
+    if (x == 0 || x==1) {
+        return 1;
+    }
+    //if number is negative
+    else if(x<0){
+        x = Math.abs(x);
+        return x * factorial(x - 1);
+    }
+    // if number is positive
+    else {
+        return x * factorial(x - 1);
     }
 }
 function Operator() {                //Dot operator function
