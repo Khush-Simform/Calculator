@@ -2,9 +2,14 @@ var showOnScreen = document.calculator.display;
 var showOnScreen2 = document.calculator.display2;
 var PIE = Math.PI;
 var ButtonClicked = 0;
+var count = 0;
+var lcount = 0;
 var memory = [];
 
 function Numbers(x) {            //Numbers function
+    if (showOnScreen.value == PIE || showOnScreen.value == Math.E) {
+        showOnScreen.value = "";
+    }
     switch (x) {
         case "zero":
             showOnScreen.value += 0;
@@ -47,40 +52,75 @@ function Numbers(x) {            //Numbers function
             break;
     }
 }
-function Arithmetic(x) {             //Arithmetic functions
-    switch (x) {
+
+function ValidateInput() {
+    let z = showOnScreen.value[showOnScreen.value.length - 1];
+    let operators = ["%", "+", "-", "*", "/", ".", "^", ".e+0"];
+    if (operators.includes(z)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+
+function Arithmetic(x) {
+    switch (x) {                //Arithmetic functions;
         case "substraction":
-            showOnScreen.value += "-";
+            if (ValidateInput()) {
+                showOnScreen.value = showOnScreen.value.slice(0, -1) + '-';
+            }
+            else if (showOnScreen.value == "") {
+                showOnScreen.value = "0-";
+            }
+            else {
+                showOnScreen.value += "-";
+            }
             break;
 
         case "addition":
-            showOnScreen.value += "+";
+            if (ValidateInput()) {
+                showOnScreen.value = showOnScreen.value.slice(0, -1) + '+';
+            }
+            else if (showOnScreen.value == "") {
+                showOnScreen.value = "0+";
+            }
+            else {
+                showOnScreen.value += "+";
+            }
             break;
 
         case "multiplication":
-            showOnScreen.value += "*";
+            if (ValidateInput()) {
+                showOnScreen.value = showOnScreen.value.slice(0, -1) + '*';
+            }
+            else if (showOnScreen.value == "") {
+                showOnScreen.value = "0*";
+            }
+            else {
+                showOnScreen.value += "*";
+            }
             break;
 
         case "division":
-            showOnScreen.value += "/";
+            if (ValidateInput()) {
+                showOnScreen.value = showOnScreen.value.slice(0, -1) + '/';
+            }
+            else if (showOnScreen.value == "") {
+                showOnScreen.value = "0/";
+            }
+            else {
+                showOnScreen.value += "/";
+            }
             break;
 
         case "pi":
-            if (showOnScreen.value == "") {
-                showOnScreen.value = PIE;
-            }
-            else {
-                showOnScreen.value += PIE;
-            }
+            showOnScreen.value = PIE;
             break;
 
         case "ex":
-            if (showOnScreen.value == "") {
-                showOnScreen.value = Math.E;
-            }
-            else {
-                showOnScreen.value += Math.E;
-            }
+            showOnScreen.value = Math.E;
             break;
 
         case "Square":
@@ -132,7 +172,9 @@ function Square_root() {             //Square Root functions
     showOnScreen.value = Math.sqrt(showOnScreen.value);
 }
 function X_Times_Y() {               //X Raise to Y functions
-    showOnScreen.value += "^";
+    if (!showOnScreen.value.includes("^")) {
+        showOnScreen.value += "^";
+    }
 }
 function Y_Root_X() {                //To find Y root of X functions
     showOnScreen.value += "Yroot";
@@ -182,7 +224,7 @@ function calculatelogBaseY() {           //Log with base Y functions
 function logBaseE() {                    //Log with base E functions
     showOnScreen.value = Math.log(showOnScreen.value);
 }
-function InverseValue() {                //Inverse the value functions
+function InverseValue() {               //Inverse the value functions
     let num = showOnScreen.value[0];
     let a = num[0];
     let b = "-";
@@ -195,31 +237,46 @@ function InverseValue() {                //Inverse the value functions
 }
 function OpenBracket() {                 //Bracket Functions
     showOnScreen.value += "(";
+    count++;
+    document.getElementById("cnt").innerHTML = count;
 }
 function CloseBracket() {                //Bracket Functions
-    if (showOnScreen.value.includes("(")) {
-        showOnScreen.value += ")";
+    if (count > 0) {
+        if (lcount == 0) {
+            showOnScreen.value += ")";
+        }
+        else {
+            showOnScreen.value += ")";
+        }
+        count--;
+        lcount++;
+        if (count == 0) {
+            lcount = 0;
+            showOnScreen.value += "*";
+        }
+        if (count == 0) {
+            document.getElementById("cnt").innerHTML = "";
+        }
+        else {
+            document.getElementById("cnt").innerHTML = count;
+        }
     }
-    else {
-        showOnScreen.value = "Check Syntax";
-    }
-
 }
-function factorial_result(n){
+function factorial_result(n) {
     var result = factorial(n);
-    if(n<0){
+    if (n < 0) {
         showOnScreen.value = "-" + result;
     }
-    else{
-        showOnScreen.value= result;
+    else {
+        showOnScreen.value = result;
     }
 }
 function factorial(x) {                  //Factorial function
-    if (x == 0 || x==1) {
+    if (x == 0 || x == 1) {
         return 1;
     }
     //if number is negative
-    else if(x<0){
+    else if (x < 0) {
         x = Math.abs(x);
         return x * factorial(x - 1);
     }
@@ -229,7 +286,16 @@ function factorial(x) {                  //Factorial function
     }
 }
 function Operator() {                //Dot operator function
-    showOnScreen.value += ".";
+    var last = showOnScreen.value[showOnScreen.value.length-1];
+    console.log(last);
+    if(last != "."){
+        if (showOnScreen.value == "") {
+            showOnScreen.value = "0.";
+        }
+        else {
+            showOnScreen.value += ".";
+        }
+    }
 }
 function BackSpace() {               //Backspace function
     if (showOnScreen.value != "") {
@@ -246,6 +312,8 @@ function Display2() {                //Display the screen function for Display 2
     let z = showOnScreen.value + "=";
     showOnScreen2.value = z;
 }
+
+
 function clickequ() {               //On click Equal to function
     if (showOnScreen.value.includes("^")) {
         XYSquare();
@@ -260,6 +328,8 @@ function clickequ() {               //On click Equal to function
     Display2();
     showOnScreen.value = Display;
 }
+
+
 function trigonometry(x) {               //Trigonometry functions
     switch (x) {
         case "sin":

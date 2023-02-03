@@ -104,7 +104,8 @@
             <button type="button" style="display:none;" onclick="Arithmetic(this.id)" id="Cube_root"
                 class="item"><sup>3</sup>&#8730x</button>
 
-            <input type="button" value="(" onclick="OpenBracket()" class="item">
+            <!-- <input type="button" value="(" id="cnt" onclick="OpenBracket()" id="cnt" class="item"> -->
+            <button type="button" value="(" onclick="OpenBracket()" class="item">( <span id="cnt"></span></button>
             <input type="button" value=")" onclick="CloseBracket()" class="item">
             <input type="button" value="n!" onclick="factorial_result(showOnScreen.value)" class="item">
             <input type="button" value="÷" onclick="Arithmetic(this.id)" id="division" class="item arithmatic">
