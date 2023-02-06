@@ -65,7 +65,7 @@ function validateInput() {
 
 }
 
-function Arithmetic(x) {
+function arithmetic(x) {
     switch (x) {                //Arithmetic functions;
         case "substraction":
             if (validateInput()) {
@@ -123,41 +123,26 @@ function Arithmetic(x) {
             showOnScreen.value = Math.E;
             break;
 
-        case "Square":
-            if (showOnScreen.value != "") {
-                showOnScreen.value = Math.pow(showOnScreen.value, 2);
-            }
-            else {
-                showOnScreen.value += "0";
-            }
+        case "square":
+            (showOnScreen.value != "") ? showOnScreen.value = Math.pow(showOnScreen.value, 2) : showOnScreen.value += "0";
             break;
 
-        case "Cube":
-            if (showOnScreen.value != "") {
-                showOnScreen.value = Math.pow(showOnScreen.value, 3);
-            }
-            else {
-                showOnScreen.value += "0";
-            }
+        case "cube":
+            (showOnScreen.value != "") ? showOnScreen.value = Math.pow(showOnScreen.value, 3) : showOnScreen.value += "0";
             break;
 
-        case "Inverse":
-            if (showOnScreen.value != "") {
-                showOnScreen.value = 1 / showOnScreen.value;
-            }
-            else {
-                showOnScreen.value = "Cannot divide by zero";
-            }
+        case "inverse":
+            (showOnScreen.value != "") ? showOnScreen.value = 1 / showOnScreen.value : showOnScreen.value = "Cannot divide by zero";
             break;
         case "Absolute":
             showOnScreen.value = Math.abs(showOnScreen.value);
             break;
 
-        case "Square_root":
+        case "squareRoot":
             showOnScreen.value = Math.sqrt(showOnScreen.value);
             break;
 
-        case "Cube_root":
+        case "cubeRoot":
             showOnScreen.value = Math.cbrt(showOnScreen.value);
             break;
     }
@@ -199,7 +184,7 @@ function xyRoot() {                  //Y root of X functions
 function xTimes10() {                  //10 raise to X functions
     showOnScreen.value = Math.pow(10, showOnScreen.value);
 }
-function TwoRaiseX() {                 //2 raise to X functions
+function twoRaiseX() {                 //2 raise to X functions
     showOnScreen.value = Math.pow(2, showOnScreen.value);
 }
 function logBase10() {                   //Log with base 10 functions
@@ -220,6 +205,10 @@ function calculatelogBaseY() {           //Log with base Y functions
 }
 function logBaseE() {                    //Log with base E functions
     showOnScreen.value = Math.log(showOnScreen.value);
+}
+
+function eRaiseX(){
+    showOnScreen.value = Math.pow(Math.E, showOnScreen.value);
 }
 function inverseValue() {               //Inverse the value functions
     let num = showOnScreen.value[0];
@@ -261,12 +250,7 @@ function closeBracket() {                //Bracket Functions
 }
 function factorialResult(n) {
     var result = factorial(n);
-    if (n < 0) {
-        showOnScreen.value = "-" + result;
-    }
-    else {
-        showOnScreen.value = result;
-    }
+    showOnScreen.value = result;
 }
 function factorial(x) {                  //Factorial function
     if (x == 0 || x == 1) {
@@ -274,8 +258,7 @@ function factorial(x) {                  //Factorial function
     }
     //if number is negative
     else if (x < 0) {
-        x = Math.abs(x);
-        return x * factorial(x - 1);
+        return "Invalid Input";
     }
     // if number is positive
     else {
@@ -284,7 +267,6 @@ function factorial(x) {                  //Factorial function
 }
 function operator() {                //Dot operator function
     var last = showOnScreen.value[showOnScreen.value.length-1];
-    console.log(last);
     if(last != "."){
         if (showOnScreen.value == "") {
             showOnScreen.value = "0.";
@@ -371,39 +353,21 @@ function functions(x) {                  //Mathematical functions
     }
 }
 function revert(x) {                 //Change the value by pressing '2nd' button
-    if (ButtonClicked % 2 == 0) {
-        document.getElementById("Square").style.display = "none";
-        document.getElementById("Square_root").style.display = "none";
-        document.getElementById("XYSquare").style.display = "none";
-        document.getElementById("X_Times_10").style.display = "none";
-        document.getElementById("log").style.display = "none";
-        document.getElementById("logE").style.display = "none";
+    document.getElementById("square").style.display = (ButtonClicked % 2 == 0) ? "none": "block";
+    document.getElementById("squareRoot").style.display = (ButtonClicked % 2 == 0) ? "none": "block";
+    document.getElementById("xySquare").style.display = (ButtonClicked % 2 == 0) ? "none": "block";
+    document.getElementById("xTimes10").style.display = (ButtonClicked % 2 == 0) ? "none": "block";
+    document.getElementById("log").style.display = (ButtonClicked % 2 == 0) ? "none": "block";
+    document.getElementById("logE").style.display = (ButtonClicked % 2 == 0) ? "none": "block";
 
-        document.getElementById("Cube").style.display = "block";
-        document.getElementById("Cube_root").style.display = "block";
-        document.getElementById("Y_root_X").style.display = "block";
-        document.getElementById("Two_raise_X").style.display = "block";
-        document.getElementById("logyx").style.display = "block";
-        document.getElementById("logyx").style.fontSize = "14px";
-        document.getElementById("EraiseX").style.display = "block";
-        ButtonClicked++;
-    }
-    else if (ButtonClicked % 2 != 0) {
-        document.getElementById("Square").style.display = "block";
-        document.getElementById("Square_root").style.display = "block";
-        document.getElementById("XYSquare").style.display = "block";
-        document.getElementById("X_Times_10").style.display = "block";
-        document.getElementById("log").style.display = "block";
-        document.getElementById("logE").style.display = "block";
-
-        document.getElementById("Cube").style.display = "none";
-        document.getElementById("Cube_root").style.display = "none";
-        document.getElementById("Y_root_X").style.display = "none";
-        document.getElementById("Two_raise_X").style.display = "none";
-        document.getElementById("logyx").style.display = "none";
-        document.getElementById("EraiseX").style.display = "none";
-        ButtonClicked++;
-    }
+    document.getElementById("cube").style.display = (ButtonClicked % 2 == 0) ? "block": "none";
+    document.getElementById("cubeRoot").style.display = (ButtonClicked % 2 == 0) ? "block": "none";
+    document.getElementById("yRootx").style.display = (ButtonClicked % 2 == 0) ? "block": "none";
+    document.getElementById("twoRaiseX").style.display = (ButtonClicked % 2 == 0) ? "block": "none";
+    document.getElementById("logyx").style.display = (ButtonClicked % 2 == 0) ? "block": "none";
+    document.getElementById("logyx").style.fontSize = "14px";
+    document.getElementById("EraiseX").style.display = (ButtonClicked % 2 == 0) ? "block": "none";
+    ButtonClicked++;
 }
 function memoryClear() {                //Memory clear function
     memory = [];
