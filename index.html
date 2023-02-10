@@ -25,16 +25,16 @@
                 <input type="text" name="display" id="display" readonly>
 
                 <input type="button" value="DEG" class="top-item">
-                <input type="button" value="F-E" class="top-item">
+                <input type="button" value="F-E" onclick="exponential()" class="top-item">
                 <input type="button" value="" class="top-item">
                 <input type="button" value="" class="top-item">
                 <input type="button" value="" class="top-item">
 
-                <input type="button" value="MC" onclick="memoryClear()" id="memoryClear" class="top-item">
-                <input type="button" value="MR" onclick="memoryResult()" id="memoryResult" class="top-item">
-                <input type="button" value="M+" onclick="memoryPlus()" id="memoryPlus" class="top-item">
-                <input type="button" value="M-" onclick="memorySub()" id="memorySub" class="top-item">
-                <input type="button" value="MS" onclick="memoryStore()" id="memoryStore" class="top-item">
+                <input type="button" value="MC" onclick="memoryOperation(this.id)" id="memoryClear" class="top-item">
+                <input type="button" value="MR" onclick="memoryOperation(this.id)" id="memoryResult" class="top-item">
+                <input type="button" value="M+" onclick="memoryOperation(this.id)" id="memoryPlus" class="top-item">
+                <input type="button" value="M-" onclick="memoryOperation(this.id)" id="memorySub" class="top-item">
+                <input type="button" value="MS" onclick="memoryOperation(this.id)" id="memoryStore" class="top-item">
                 <!-- Top Part of Calculator Ends-->
 
                 <!-- Bottom part of Calculator Starts -->
@@ -144,7 +144,8 @@
 
             <input type="button" value="+/-" onclick="inverseValue()" class="item">
             <input type="button" name="" value="0" onclick="numbers(this.id)" id="zero" class="item numbers">
-            <input type="button" value="." onclick="operator()" class="item">
+            <!-- <input type="button" value="." onclick="operator()" class="item"> -->
+            <button type="button" onclick="operator()" class="item"><strong>.</strong></button>
             <input type="button" name="" value="=" onclick="clickequ()" class="item arithmatic equal">
             <!-- Bottom part of Calculator Ends -->
 
